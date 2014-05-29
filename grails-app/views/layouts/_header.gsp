@@ -8,10 +8,13 @@
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="/css/sb-admin.css" rel="stylesheet">
+        <link href="/css/bootstrapValidator.min.css" rel="stylesheet">
         <link href="/css/style.css" rel="stylesheet">
-        <script src="${resource(dir: 'js', file: 'jquery-1.10.2.js')}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <!--<script src="${resource(dir: 'js', file: 'jquery-1.10.2.js')}"></script>-->
         <script src="${resource(dir: 'js/bs', file: 'bootstrap.min.js')}"></script>
         <script src="${resource(dir: 'js/bs/plugins/metisMenu', file: 'jquery.metisMenu.js')}"></script>
+        <script src="${resource(dir: 'js/bs', file: 'bootstrapValidator.min.js')}"></script>
         <script src="${resource(dir: 'js', file: 'menu.js')}"></script>
         <title>SEO analysis system</title>
     </head>

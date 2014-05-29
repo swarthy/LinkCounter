@@ -5,8 +5,8 @@ grails.project.test.reports.dir = "target/test-reports"
 grails.project.work.dir = "target/work"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
-grails.project.war.file = "target/${appName}.war"
-//grails.project.war.file = "target/ROOT.war"
+//grails.project.war.file = "target/${appName}.war"
+grails.project.war.file = "target/ROOT.war"
 
 grails.project.fork = [
     // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required

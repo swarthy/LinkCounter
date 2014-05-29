@@ -18,7 +18,7 @@ class Client {
         email email: true, unique: true, blank: false
         phone nullable: true, blank: true
         city nullable: true, blank: true
-        info nullable: true, blank: true
+        info nullable: true, blank: true, size: 1..5000
         icq nullable: true, size: 6..9
     }
 }

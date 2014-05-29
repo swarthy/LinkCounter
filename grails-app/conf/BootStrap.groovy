@@ -8,7 +8,10 @@ class BootStrap {
                 metricsCollectorService.init()
                 createTestData()
             }
-            production {}
+            production {
+                metricsCollectorService.init()
+                createTestData()
+            }
         }
     }
     def destroy = {

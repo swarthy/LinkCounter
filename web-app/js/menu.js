@@ -8,5 +8,7 @@ $(function() {
         } else {
             $('div.sidebar-collapse').removeClass('collapse')
         }
-    })
+    });
+    $("form").bootstrapValidator();
+    console.log("init");
 })
