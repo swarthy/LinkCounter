@@ -23,6 +23,78 @@
 			</g:if>
 			<ol class="property-list client">
 			
+				<g:if test="${clientInstance?.name}">
+				<li class="fieldcontain">
+					<span id="name-label" class="property-label"><g:message code="client.name.label" default="Name" /></span>
+					
+						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${clientInstance}" field="name"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${clientInstance?.surname}">
+				<li class="fieldcontain">
+					<span id="surname-label" class="property-label"><g:message code="client.surname.label" default="Surname" /></span>
+					
+						<span class="property-value" aria-labelledby="surname-label"><g:fieldValue bean="${clientInstance}" field="surname"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${clientInstance?.patronymic}">
+				<li class="fieldcontain">
+					<span id="patronymic-label" class="property-label"><g:message code="client.patronymic.label" default="Patronymic" /></span>
+					
+						<span class="property-value" aria-labelledby="patronymic-label"><g:fieldValue bean="${clientInstance}" field="patronymic"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${clientInstance?.email}">
+				<li class="fieldcontain">
+					<span id="email-label" class="property-label"><g:message code="client.email.label" default="Email" /></span>
+					
+						<span class="property-value" aria-labelledby="email-label"><g:fieldValue bean="${clientInstance}" field="email"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${clientInstance?.phone}">
+				<li class="fieldcontain">
+					<span id="phone-label" class="property-label"><g:message code="client.phone.label" default="Phone" /></span>
+					
+						<span class="property-value" aria-labelledby="phone-label"><g:fieldValue bean="${clientInstance}" field="phone"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${clientInstance?.icq}">
+				<li class="fieldcontain">
+					<span id="icq-label" class="property-label"><g:message code="client.icq.label" default="Icq" /></span>
+					
+						<span class="property-value" aria-labelledby="icq-label"><g:fieldValue bean="${clientInstance}" field="icq"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${clientInstance?.city}">
+				<li class="fieldcontain">
+					<span id="city-label" class="property-label"><g:message code="client.city.label" default="City" /></span>
+					
+						<span class="property-value" aria-labelledby="city-label"><g:fieldValue bean="${clientInstance}" field="city"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${clientInstance?.info}">
+				<li class="fieldcontain">
+					<span id="info-label" class="property-label"><g:message code="client.info.label" default="Info" /></span>
+					
+						<span class="property-value" aria-labelledby="info-label"><g:fieldValue bean="${clientInstance}" field="info"/></span>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form url="[resource:clientInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

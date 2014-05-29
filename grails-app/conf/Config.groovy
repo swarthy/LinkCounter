@@ -88,6 +88,8 @@ tomcat.deploy.username="alex"
 tomcat.deploy.password="vfvfvskfhfve"
 tomcat.deploy.url="http://54.186.176.155:8080/manager/text"
 
+grails.plugins.twitterbootstrap.fixtaglib = true
+
 grails.app.context = "/"
 
 environments {

@@ -2,6 +2,15 @@
 
 
 
+<div class="fieldcontain ${hasErrors(bean: projectInstance, field: 'title', 'error')} required">
+	<label for="title">
+		<g:message code="project.title.label" default="Title" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="title" required="" value="${projectInstance?.title}"/>
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: projectInstance, field: 'client', 'error')} required">
 	<label for="client">
 		<g:message code="project.client.label" default="Client" />

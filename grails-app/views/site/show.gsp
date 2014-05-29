@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list site">
 			
+				<g:if test="${siteInstance?.url}">
+				<li class="fieldcontain">
+					<span id="url-label" class="property-label"><g:message code="site.url.label" default="Url" /></span>
+					
+						<span class="property-value" aria-labelledby="url-label"><g:fieldValue bean="${siteInstance}" field="url"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${siteInstance?.keywords}">
 				<li class="fieldcontain">
 					<span id="keywords-label" class="property-label"><g:message code="site.keywords.label" default="Keywords" /></span>

@@ -67,6 +67,7 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.11.0"
         runtime ":resources:1.2.1"
 
+        compile ':quartz:1.0.1'
         runtime ":twitter-bootstrap:3.1.1"
 
         compile ":create-domain-uml:0.5"

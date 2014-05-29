@@ -34,6 +34,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${keywordInstance?.value}">
+				<li class="fieldcontain">
+					<span id="value-label" class="property-label"><g:message code="keyword.value.label" default="Value" /></span>
+					
+						<span class="property-value" aria-labelledby="value-label"><g:fieldValue bean="${keywordInstance}" field="value"/></span>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form url="[resource:keywordInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

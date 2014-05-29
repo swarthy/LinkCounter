@@ -5,9 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-        <link href="css/sb-admin.css" rel="stylesheet">
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
+        <link href="/css/sb-admin.css" rel="stylesheet">
+        <link href="/css/style.css" rel="stylesheet">
         <script src="${resource(dir: 'js', file: 'jquery-1.10.2.js')}"></script>
         <script src="${resource(dir: 'js/bs', file: 'bootstrap.min.js')}"></script>
         <script src="${resource(dir: 'js/bs/plugins/metisMenu', file: 'jquery.metisMenu.js')}"></script>
@@ -257,10 +258,10 @@
                     <a href="${createLink(uri:'/')}"><i class="fa fa-dashboard fa-fw"></i> Главная</a>
                 </li>
                 <li>
-                    <a href="tables.html"><i class="fa fa-tasks fa-fw"></i> Проекты</a>
+                    <a href="${createLink(controller: 'project')}"><i class="fa fa-tasks fa-fw"></i> Проекты</a>
                 </li>
                 <li>
-                    <a href="tables.html"><i class="fa fa-user fa-fw"></i> Клиенты</a>
+                    <a href="${createLink(controller: 'client')}"><i class="fa fa-user fa-fw"></i> Клиенты</a>
                 </li>
                 <!--<li>
                     <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>

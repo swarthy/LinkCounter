@@ -2,6 +2,15 @@
 
 
 
+<div class="fieldcontain ${hasErrors(bean: siteInstance, field: 'url', 'error')} required">
+	<label for="url">
+		<g:message code="site.url.label" default="Url" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field type="url" name="url" required="" value="${siteInstance?.url}"/>
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: siteInstance, field: 'keywords', 'error')} ">
 	<label for="keywords">
 		<g:message code="site.keywords.label" default="Keywords" />

@@ -11,3 +11,12 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: keywordInstance, field: 'value', 'error')} ">
+	<label for="value">
+		<g:message code="keyword.value.label" default="Value" />
+		
+	</label>
+	<g:textField name="value" value="${keywordInstance?.value}"/>
+
+</div>
+

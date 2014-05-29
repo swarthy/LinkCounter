@@ -1,12 +1,14 @@
 package ru.linkcounter
 
-
+import grails.converters.JSON
+import grails.transaction.Transactional
 
 import static org.springframework.http.HttpStatus.*
-import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class SiteController {
+
+    def metricsCollectorService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -90,6 +92,18 @@ class SiteController {
             }
             '*'{ render status: NO_CONTENT }
         }
+    }
+
+    def getMetrics(Site site)
+    {
+        if (site == null) {
+            notFound()
+            return
+        }
+        def tcy = metricsCollectorService.getTcy(site)
+        def pr = metricsCollectorService.getPR(site)
+        //render ([tcy] as JSON)
+        render ([tcy.toInteger(), pr] as JSON)
     }
 
     protected void notFound() {

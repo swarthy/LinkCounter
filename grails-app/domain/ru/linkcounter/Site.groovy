@@ -8,6 +8,6 @@ class Site {
         url blank: false, url: true
     }
 
-    static hasMany = [keywords: Keyword]
+    static hasMany = [keywords: Keyword, states: SiteState]
     static belongsTo = [project: Project]
 }

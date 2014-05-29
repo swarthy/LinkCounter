@@ -15,8 +15,10 @@ class Client {
         name blank: false
         surname blank: false
         patronymic blank: false
-        email email: true, blank: false
-        phone blank: false
+        email email: true, unique: true, blank: false
+        phone nullable: true, blank: true
+        city nullable: true, blank: true
+        info nullable: true, blank: true
         icq nullable: true, size: 6..9
     }
 }
