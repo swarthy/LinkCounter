@@ -1,7 +1,7 @@
 <g:render template="/layouts/header"/>
 
 
-<h1 class="page-header">Добавление клиента</h1>
+<h3 class="page-header">Добавление клиента</h3>
 <g:if test="${flash.message}">
     <div class="alert alert-info" role="status">${flash.message}</div>
 </g:if>
@@ -21,8 +21,8 @@
     <div class="pull-right">
         <button type="submit"
                 class="btn btn-primary">${message(code: 'default.button.create.label', default: 'Создать')}</button>
-        <button type="submit"
-                class="btn btn-primary">${message(code: 'default.button.create.label', default: 'Создать')}</button>
+        <button type="reset"
+                class="btn btn-default">${message(code: 'default.button.reset.label', default: 'Сброс')}</button>
     </div>
 </g:form>
 

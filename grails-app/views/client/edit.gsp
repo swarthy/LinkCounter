@@ -1,41 +1,32 @@
-<%@ page import="ru.linkcounter.Client" %>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'client.label', default: 'Client')}" />
-		<title><g:message code="default.edit.label" args="[entityName]" /></title>
-	</head>
-	<body>
-		<a href="#edit-client" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="edit-client" class="content scaffold-edit" role="main">
-			<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<g:hasErrors bean="${clientInstance}">
-			<ul class="errors" role="alert">
-				<g:eachError bean="${clientInstance}" var="error">
-				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-				</g:eachError>
-			</ul>
-			</g:hasErrors>
-			<g:form url="[resource:clientInstance, action:'update']" method="PUT" >
-				<g:hiddenField name="version" value="${clientInstance?.version}" />
-				<fieldset class="form">
-					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="buttons">
-					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-				</fieldset>
-			</g:form>
-		</div>
-	</body>
+<%@ page import="ru.seoTracker.Client" %>
+<g:render template="/layouts/header"/>
+
+
+<h3 class="page-header">Редактирование клиента ${clientInstance}</h3>
+<g:if test="${flash.message}">
+    <div class="alert alert-info" role="status">${flash.message}</div>
+</g:if>
+<g:hasErrors bean="${clientInstance}">
+    <div class="panel panel-danger">
+        <div class="panel-heading"></div>
+
+        <div class="panel-body">
+            <g:eachError bean="${clientInstance}" var="error">
+                <div><g:message error="${error}"/></div>
+            </g:eachError>
+        </div>
+    </div>
+</g:hasErrors>
+<g:form url="[resource: clientInstance, action: 'update']" method="PUT" class="form-horizontal">
+    <g:hiddenField name="version" value="${clientInstance?.version}"/>
+    <g:render template="form"/>
+    <div class="pull-right">
+        <button type="submit"
+                class="btn btn-primary">${message(code: 'default.button.update.label', default: 'Сохранить')}</button>
+        <button type="reset"
+                class="btn btn-default">${message(code: 'default.button.reset.label', default: 'Сброс')}</button>
+    </div>
+</g:form>
+</div>
+</body>
 </html>

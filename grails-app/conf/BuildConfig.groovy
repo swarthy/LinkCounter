@@ -13,13 +13,13 @@ grails.project.fork = [
     //  compile: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
 
     // configure settings for the test-app JVM, uses the daemon by default
-    test: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
+    test: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 128, daemon:true],
     // configure settings for the run-app JVM
-    run: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
+    run: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 128, forkReserve:false],
     // configure settings for the run-war JVM
-    war: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
+    war: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 128, forkReserve:false],
     // configure settings for the Console UI JVM
-    console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
+    console: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 128]
 ]
 
 grails.project.dependency.resolver = "maven" // or ivy
@@ -41,6 +41,7 @@ grails.project.dependency.resolution = {
         mavenLocal()
         grailsCentral()
         mavenCentral()
+        mavenRepo 'http://repo.spring.io/milestone'
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -50,6 +51,7 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         runtime 'mysql:mysql-connector-java:5.1.27'
+        compile "joda-time:joda-time-hibernate:1.3"
         // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
     }
 
@@ -67,10 +69,19 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.11.0"
         runtime ":resources:1.2.1"
 
-        compile ':quartz:1.0.1'
+        compile ":joda-time:1.4"
+
+        //compile ':quartz:1.0.1'
         runtime ":twitter-bootstrap:3.1.1"
 
-        compile ":create-domain-uml:0.5"
+        //UML class domain
+        //compile ":create-domain-uml:0.5"
+        compile ":class-domain-uml:0.1.5"
+        compile ":mail:1.0.5"
+
+        compile ':spring-security-core:2.0-RC2'
+
+        compile ":h2:0.2.6"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"

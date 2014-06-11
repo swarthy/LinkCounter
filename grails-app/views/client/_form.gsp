@@ -1,4 +1,4 @@
-<%@ page import="ru.linkcounter.Client" %>
+<%@ page import="ru.seoTracker.Client" %>
 
 
 <div class="form-group ${hasErrors(bean: clientInstance, field: 'surname', 'has-error')}">
@@ -54,6 +54,16 @@
 
 </div>
 
+<div class="form-group ${hasErrors(bean: clientInstance, field: 'city', 'has-error')} ">
+    <label for="city" class="col-sm-2 control-label">
+        <g:message code="client.city.label" default="Город"/>
+    </label>
+
+    <div class="col-sm-10">
+        <input name="city" value="${clientInstance?.city}" class="form-control"/>
+    </div>
+</div>
+
 <div class="form-group ${hasErrors(bean: clientInstance, field: 'phone', 'has-error')}">
     <label for="phone" class="col-sm-2 control-label">
         <g:message code="client.phone.label" default="Номер телефона"/>
@@ -72,16 +82,6 @@
 
     <div class="col-sm-10">
         <input name="icq" type="number" value="${clientInstance.icq}" class="form-control"/>
-    </div>
-</div>
-
-<div class="form-group ${hasErrors(bean: clientInstance, field: 'city', 'has-error')} ">
-    <label for="city" class="col-sm-2 control-label">
-        <g:message code="client.city.label" default="Город"/>
-    </label>
-
-    <div class="col-sm-10">
-        <input name="city" value="${clientInstance?.city}" class="form-control"/>
     </div>
 </div>
 

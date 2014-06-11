@@ -1,31 +1,15 @@
-<%@ page import="ru.linkcounter.Site" %>
+<div class="form-group ${hasErrors(bean: siteInstance, field: 'url', 'has-error')}">
+    <label for="url" class="col-sm-2 control-label">
+        <g:message code="Client.url.label" default="Адрес"/>
+    </label>
 
-
-
-<div class="fieldcontain ${hasErrors(bean: siteInstance, field: 'url', 'error')} required">
-	<label for="url">
-		<g:message code="site.url.label" default="Url" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field type="url" name="url" required="" value="${siteInstance?.url}"/>
-
+    <div class="col-sm-10">
+        <input name="url" value="${siteInstance?.url}" class="form-control"
+               data-bv-notempty="true"
+               data-bv-notempty-message="Адрес не может быть пустым"
+               data-bv-uri="true"
+               data-bv-uri-message="Адрес задан некорректно"
+               >
+    </div>
+    <input type="hidden" name="client" value="${client.id}">
 </div>
-
-<div class="fieldcontain ${hasErrors(bean: siteInstance, field: 'keywords', 'error')} ">
-	<label for="keywords">
-		<g:message code="site.keywords.label" default="Keywords" />
-		
-	</label>
-	<g:select name="keywords" from="${ru.linkcounter.Keyword.list()}" multiple="multiple" optionKey="id" size="5" value="${siteInstance?.keywords*.id}" class="many-to-many"/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: siteInstance, field: 'project', 'error')} required">
-	<label for="project">
-		<g:message code="site.project.label" default="Project" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="project" name="project.id" from="${ru.linkcounter.Project.list()}" optionKey="id" required="" value="${siteInstance?.project?.id}" class="many-to-one"/>
-
-</div>
-

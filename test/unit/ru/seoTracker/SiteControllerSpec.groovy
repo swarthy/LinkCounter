@@ -1,15 +1,17 @@
-package ru.linkcounter
+package ru.seoTracker
 
 
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(ProjectController)
-@Mock(Project)
-class ProjectControllerSpec extends Specification {
+@TestFor(SiteController)
+@Mock([Site, Client])
+class SiteControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
+        params["url"] = "http://www.osu.ru"
+        params["client"] = new Client(name: "name", surname: "s", patronymic: "s", phone: "s", info: "s", icq: 12345, email: "test@mail.ru", city: "s")
         // TODO: Populate valid properties like...
         //params["name"] = 'someValidName'
     }
@@ -20,8 +22,8 @@ class ProjectControllerSpec extends Specification {
         controller.index()
 
         then: "The model is correct"
-        !model.projectInstanceList
-        model.projectInstanceCount == 0
+        !model.siteInstanceList
+        model.siteInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -29,32 +31,32 @@ class ProjectControllerSpec extends Specification {
         controller.create()
 
         then: "The model is correctly created"
-        model.projectInstance != null
+        model.siteInstance != null
     }
 
     void "Test the save action correctly persists an instance"() {
 
         when: "The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
-        def project = new Project()
-        project.validate()
-        controller.save(project)
+        def site = new Site()
+        site.validate()
+        controller.save(site)
 
         then: "The create view is rendered again with the correct model"
-        model.projectInstance != null
+        model.siteInstance != null
         view == 'create'
 
         when: "The save action is executed with a valid instance"
         response.reset()
         populateValidParams(params)
-        project = new Project(params)
+        site = new Site(params)
 
-        controller.save(project)
+        controller.save(site)
 
         then: "A redirect is issued to the show action"
-        response.redirectedUrl == '/project/show/1'
+        response.redirectedUrl == '/site/show/1'
         controller.flash.message != null
-        Project.count() == 1
+        Site.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -66,11 +68,11 @@ class ProjectControllerSpec extends Specification {
 
         when: "A domain instance is passed to the show action"
         populateValidParams(params)
-        def project = new Project(params)
-        controller.show(project)
+        def site = new Site(params)
+        controller.show(site)
 
         then: "A model is populated containing the domain instance"
-        model.projectInstance == project
+        model.siteInstance == site
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -82,11 +84,11 @@ class ProjectControllerSpec extends Specification {
 
         when: "A domain instance is passed to the edit action"
         populateValidParams(params)
-        def project = new Project(params)
-        controller.edit(project)
+        def site = new Site(params)
+        controller.edit(site)
 
         then: "A model is populated containing the domain instance"
-        model.projectInstance == project
+        model.siteInstance == site
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -95,28 +97,28 @@ class ProjectControllerSpec extends Specification {
         controller.update(null)
 
         then: "A 404 error is returned"
-        response.redirectedUrl == '/project/index'
+        response.redirectedUrl == '/site/index'
         flash.message != null
 
 
         when: "An invalid domain instance is passed to the update action"
         response.reset()
-        def project = new Project()
-        project.validate()
-        controller.update(project)
+        def site = new Site()
+        site.validate()
+        controller.update(site)
 
         then: "The edit view is rendered again with the invalid instance"
         view == 'edit'
-        model.projectInstance == project
+        model.siteInstance == site
 
         when: "A valid domain instance is passed to the update action"
         response.reset()
         populateValidParams(params)
-        project = new Project(params).save(flush: true)
-        controller.update(project)
+        site = new Site(params).save(flush: true)
+        controller.update(site)
 
         then: "A redirect is issues to the show action"
-        response.redirectedUrl == "/project/show/$project.id"
+        response.redirectedUrl == "/site/show/$site.id"
         flash.message != null
     }
 
@@ -126,23 +128,23 @@ class ProjectControllerSpec extends Specification {
         controller.delete(null)
 
         then: "A 404 is returned"
-        response.redirectedUrl == '/project/index'
+        response.redirectedUrl == '/site/index'
         flash.message != null
 
         when: "A domain instance is created"
         response.reset()
         populateValidParams(params)
-        def project = new Project(params).save(flush: true)
+        def site = new Site(params).save(flush: true)
 
         then: "It exists"
-        Project.count() == 1
+        Site.count() == 1
 
         when: "The domain instance is passed to the delete action"
-        controller.delete(project)
+        controller.delete(site)
 
         then: "The instance is deleted"
-        Project.count() == 0
-        response.redirectedUrl == '/project/index'
+        Site.count() == 0
+        response.redirectedUrl == '/client/show'
         flash.message != null
     }
 }

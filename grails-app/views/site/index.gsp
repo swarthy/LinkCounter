@@ -1,50 +1,63 @@
+<g:render template="/layouts/header"/>
 
-<%@ page import="ru.linkcounter.Site" %>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'site.label', default: 'Site')}" />
-		<title><g:message code="default.list.label" args="[entityName]" /></title>
-	</head>
-	<body>
-		<a href="#list-site" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="list-site" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<table>
-			<thead>
-					<tr>
-					
-						<g:sortableColumn property="url" title="${message(code: 'site.url.label', default: 'Url')}" />
-					
-						<th><g:message code="site.project.label" default="Project" /></th>
-					
-					</tr>
-				</thead>
-				<tbody>
-				<g:each in="${siteInstanceList}" status="i" var="siteInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${siteInstance.id}">${fieldValue(bean: siteInstance, field: "url")}</g:link></td>
-					
-						<td>${fieldValue(bean: siteInstance, field: "project")}</td>
-					
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
-			<div class="pagination">
-				<g:paginate total="${siteInstanceCount ?: 0}" />
-			</div>
-		</div>
-	</body>
-</html>
+<%@ page import="grails.converters.JSON; ru.seoTracker.Site" %>
+
+<div class="top20"></div>
+<g:if test="${flash.message}">
+    <div class="alert alert-info" role="status">${flash.message}</div>
+</g:if>
+<div class="panel panel-default">
+    <div class="panel-heading"><i class="fa fa-users fa-fw"></i> Список сайтов
+
+    </div>
+
+    <div class="panel-body">
+        <table id="clientsTable" class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>${message(code: 'site.url.label', default: 'Адрес')}</th>
+                <th>${message(code: 'site.pr.label', default: 'PageRank')}</th>
+                <th>${message(code: 'site.tcy.label', default: 'тИЦ')}</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#clientsTable').dataTable({
+            <g:applyCodec encodeAs="none">
+            "data": ${Site.list().collect { it.toJSONArray() } as JSON},
+            </g:applyCodec>
+            "language": {
+                "emptyTable": "Нет записей",
+                "info": "Показаны записи с _START_ по _END_ из _TOTAL_.",
+                "infoEmpty": "",
+                "infoFiltered": "",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Показывать _MENU_ записей",
+                "loadingRecords": "Загрузка...",
+                "processing": "Обработка...",
+                "search": "<i class='glyphicon glyphicon-search'></i> ",
+                "zeroRecords": "Совпадений не найдено",
+                "paginate": {
+                    "first": "Начало",
+                    "last": "Конец",
+                    "next": "Вперед",
+                    "previous": "Назад"
+                },
+                "aria": {
+                    "sortAscending": ": сортировка по возрастанию",
+                    "sortDescending": ": сортировка по убыванию"
+                }
+            },
+            "scrollX": true,
+            "fnRowCallback": function (row, data, index) {
+                $(row).children(":first").wrapInner("<a href='show/"+data[3]+"'></a>");
+            }
+        });
+    });
+</script>
+
+<g:render template="/layouts/footer"/>

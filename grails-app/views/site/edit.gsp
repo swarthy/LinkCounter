@@ -1,4 +1,4 @@
-<%@ page import="ru.linkcounter.Site" %>
+<%@ page import="ru.seoTracker.Site" %>
 <!DOCTYPE html>
 <html>
 	<head>

@@ -32,7 +32,8 @@ environments {
             password = ""
             driverClassName = "com.mysql.jdbc.Driver"
             dbCreate = "create-drop"
-            url = "jdbc:mysql://localhost/linkcounter"
+            url = "jdbc:mysql://localhost/linkcounter?useUnicode=yes&characterEncoding=UTF-8"
+            dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
         }
     }
 }

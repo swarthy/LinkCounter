@@ -1,15 +1,21 @@
-package ru.linkcounter
+package ru.seoTracker
 
 
 import grails.test.mixin.*
+import org.joda.time.DateTime
 import spock.lang.*
 
-@TestFor(KeywordController)
-@Mock(Keyword)
-class KeywordControllerSpec extends Specification {
+@TestFor(SiteStateController)
+@Mock([SiteState, Site])
+class SiteStateControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
+        def site = new Site(url: "http://test.com")
+        params["site"] = site;
+        params["tcy"] = 1000
+        params["pr"] = 10
+        params["dateCreated"] = DateTime.now()
         // TODO: Populate valid properties like...
         //params["name"] = 'someValidName'
     }
@@ -20,8 +26,8 @@ class KeywordControllerSpec extends Specification {
         controller.index()
 
         then: "The model is correct"
-        !model.keywordInstanceList
-        model.keywordInstanceCount == 0
+        !model.siteStateInstanceList
+        model.siteStateInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -29,32 +35,32 @@ class KeywordControllerSpec extends Specification {
         controller.create()
 
         then: "The model is correctly created"
-        model.keywordInstance != null
+        model.siteStateInstance != null
     }
 
     void "Test the save action correctly persists an instance"() {
 
         when: "The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
-        def keyword = new Keyword()
-        keyword.validate()
-        controller.save(keyword)
+        def siteState = new SiteState()
+        siteState.validate()
+        controller.save(siteState)
 
         then: "The create view is rendered again with the correct model"
-        model.keywordInstance != null
+        model.siteStateInstance != null
         view == 'create'
 
         when: "The save action is executed with a valid instance"
         response.reset()
         populateValidParams(params)
-        keyword = new Keyword(params)
+        siteState = new SiteState(params)
 
-        controller.save(keyword)
+        controller.save(siteState)
 
         then: "A redirect is issued to the show action"
-        response.redirectedUrl == '/keyword/show/1'
+        response.redirectedUrl == '/siteState/show/1'
         controller.flash.message != null
-        Keyword.count() == 1
+        SiteState.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -66,11 +72,11 @@ class KeywordControllerSpec extends Specification {
 
         when: "A domain instance is passed to the show action"
         populateValidParams(params)
-        def keyword = new Keyword(params)
-        controller.show(keyword)
+        def siteState = new SiteState(params)
+        controller.show(siteState)
 
         then: "A model is populated containing the domain instance"
-        model.keywordInstance == keyword
+        model.siteStateInstance == siteState
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -82,11 +88,11 @@ class KeywordControllerSpec extends Specification {
 
         when: "A domain instance is passed to the edit action"
         populateValidParams(params)
-        def keyword = new Keyword(params)
-        controller.edit(keyword)
+        def siteState = new SiteState(params)
+        controller.edit(siteState)
 
         then: "A model is populated containing the domain instance"
-        model.keywordInstance == keyword
+        model.siteStateInstance == siteState
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -95,28 +101,28 @@ class KeywordControllerSpec extends Specification {
         controller.update(null)
 
         then: "A 404 error is returned"
-        response.redirectedUrl == '/keyword/index'
+        response.redirectedUrl == '/siteState/index'
         flash.message != null
 
 
         when: "An invalid domain instance is passed to the update action"
         response.reset()
-        def keyword = new Keyword()
-        keyword.validate()
-        controller.update(keyword)
+        def siteState = new SiteState()
+        siteState.validate()
+        controller.update(siteState)
 
         then: "The edit view is rendered again with the invalid instance"
         view == 'edit'
-        model.keywordInstance == keyword
+        model.siteStateInstance == siteState
 
         when: "A valid domain instance is passed to the update action"
         response.reset()
         populateValidParams(params)
-        keyword = new Keyword(params).save(flush: true)
-        controller.update(keyword)
+        siteState = new SiteState(params).save(flush: true)
+        controller.update(siteState)
 
         then: "A redirect is issues to the show action"
-        response.redirectedUrl == "/keyword/show/$keyword.id"
+        response.redirectedUrl == "/siteState/show/$siteState.id"
         flash.message != null
     }
 
@@ -126,23 +132,23 @@ class KeywordControllerSpec extends Specification {
         controller.delete(null)
 
         then: "A 404 is returned"
-        response.redirectedUrl == '/keyword/index'
+        response.redirectedUrl == '/siteState/index'
         flash.message != null
 
         when: "A domain instance is created"
         response.reset()
         populateValidParams(params)
-        def keyword = new Keyword(params).save(flush: true)
+        def siteState = new SiteState(params).save(flush: true)
 
         then: "It exists"
-        Keyword.count() == 1
+        SiteState.count() == 1
 
         when: "The domain instance is passed to the delete action"
-        controller.delete(keyword)
+        controller.delete(siteState)
 
         then: "The instance is deleted"
-        Keyword.count() == 0
-        response.redirectedUrl == '/keyword/index'
+        SiteState.count() == 0
+        response.redirectedUrl == '/siteState/index'
         flash.message != null
     }
 }

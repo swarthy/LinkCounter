@@ -5,18 +5,26 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <link rel="shortcut icon" href="${createLinkTo(dir:'images', file:'favicon.ico')}?v=2" type="image/x-icon" />
+
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="/css/sb-admin.css" rel="stylesheet">
+        <link href="/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+        <link href="/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
         <link href="/css/bootstrapValidator.min.css" rel="stylesheet">
         <link href="/css/style.css" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <!--<script src="${resource(dir: 'js', file: 'jquery-1.10.2.js')}"></script>-->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
+        <script src="${resource(dir: 'js', file: 'jquery-1.10.2.js')}"></script>
         <script src="${resource(dir: 'js/bs', file: 'bootstrap.min.js')}"></script>
         <script src="${resource(dir: 'js/bs/plugins/metisMenu', file: 'jquery.metisMenu.js')}"></script>
+        <script src="${resource(dir: 'js/bs/plugins/morris', file: 'raphael-2.1.0.min.js')}"></script>
+        <script src="${resource(dir: 'js/bs/plugins/morris', file: 'morris.js')}"></script>
+        <script src="${resource(dir: 'js/bs/plugins/dataTables', file: 'jquery.dataTables.js')}"></script>
+        <script src="${resource(dir: 'js/bs/plugins/dataTables', file: 'dataTables.bootstrap.js')}"></script>
         <script src="${resource(dir: 'js/bs', file: 'bootstrapValidator.min.js')}"></script>
         <script src="${resource(dir: 'js', file: 'menu.js')}"></script>
-        <title>SEO analysis system</title>
+        <title>SEO Tracker</title>
     </head>
     <body>
     <div id="wrapper">
@@ -29,7 +37,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="${createLink(uri: '/')}">SEO analysis system</a>
+        <a class="navbar-brand" href="${createLink(uri: '/')}">SEO Tracker</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -235,7 +243,7 @@
             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Настройки</a>
             </li>
             <li class="divider"></li>
-            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Выход</a>
+            <li><a href="${createLink(controller:'logout')}"><i class="fa fa-sign-out fa-fw"></i> Выход</a>
             </li>
         </ul>
         <!-- /.dropdown-user -->
@@ -258,13 +266,13 @@
                     </div>
                 </li> -->
                 <li>
-                    <a href="${createLink(uri:'/')}"><i class="fa fa-dashboard fa-fw"></i> Главная</a>
+                    <a href="${createLink(uri:'/')}"><i class="fa fa-dashboard fa-fw"></i> Монитор</a>
                 </li>
                 <li>
-                    <a href="${createLink(controller: 'project')}"><i class="fa fa-tasks fa-fw"></i> Проекты</a>
+                    <a href="${createLink(controller: 'client')}"><i class="fa fa-users fa-fw"></i> Клиенты</a>
                 </li>
                 <li>
-                    <a href="${createLink(controller: 'client')}"><i class="fa fa-user fa-fw"></i> Клиенты</a>
+                    <a href="${createLink(controller: 'site')}"><i class="fa fa-bookmark fa-fw"></i> Сайты</a>
                 </li>
                 <!--<li>
                     <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>

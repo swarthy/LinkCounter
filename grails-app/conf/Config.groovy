@@ -16,19 +16,19 @@ grails.project.groupId = appName // change this to alter the default package nam
 // The ACCEPT header will not be used for content negotiation for user agents containing the following strings (defaults to the 4 major rendering engines)
 grails.mime.disable.accept.header.userAgents = ['Gecko', 'WebKit', 'Presto', 'Trident']
 grails.mime.types = [ // the first one is the default format
-    all:           '*/*', // 'all' maps to '*' or the first available format in withFormat
-    atom:          'application/atom+xml',
-    css:           'text/css',
-    csv:           'text/csv',
-    form:          'application/x-www-form-urlencoded',
-    html:          ['text/html','application/xhtml+xml'],
-    js:            'text/javascript',
-    json:          ['application/json', 'text/json'],
-    multipartForm: 'multipart/form-data',
-    rss:           'application/rss+xml',
-    text:          'text/plain',
-    hal:           ['application/hal+json','application/hal+xml'],
-    xml:           ['text/xml', 'application/xml']
+                      all          : '*/*', // 'all' maps to '*' or the first available format in withFormat
+                      atom         : 'application/atom+xml',
+                      css          : 'text/css',
+                      csv          : 'text/csv',
+                      form         : 'application/x-www-form-urlencoded',
+                      html         : ['text/html', 'application/xhtml+xml'],
+                      js           : 'text/javascript',
+                      json         : ['application/json', 'text/json'],
+                      multipartForm: 'multipart/form-data',
+                      rss          : 'application/rss+xml',
+                      text         : 'text/plain',
+                      hal          : ['application/hal+json', 'application/hal+xml'],
+                      xml          : ['text/xml', 'application/xml']
 ]
 
 // URL Mapping Cache Max Size, defaults to 5000
@@ -63,7 +63,7 @@ grails {
     }
 }
 
- 
+
 grails.converters.encoding = "UTF-8"
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
@@ -75,7 +75,7 @@ grails.enable.native2ascii = true
 // packages to include in Spring bean scanning
 grails.spring.bean.packages = []
 // whether to disable processing of multi part requests
-grails.web.disable.multipart=false
+grails.web.disable.multipart = false
 
 // request parameters to mask when logging exceptions
 grails.exceptionresolver.params.exclude = ['password']
@@ -84,9 +84,9 @@ grails.exceptionresolver.params.exclude = ['password']
 grails.hibernate.cache.queries = false
 
 
-tomcat.deploy.username="alex"
-tomcat.deploy.password="vfvfvskfhfve"
-tomcat.deploy.url="http://54.186.176.155:8080/manager/text"
+tomcat.deploy.username = "alex"
+tomcat.deploy.password = "vfvfvskfhfve"
+tomcat.deploy.url = "http://54.186.176.155/manager/text"
 
 grails.plugins.twitterbootstrap.fixtaglib = true
 
@@ -110,15 +110,65 @@ log4j = {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
 
-    error  'org.codehaus.groovy.grails.web.servlet',        // controllers
-           'org.codehaus.groovy.grails.web.pages',          // GSP
-           'org.codehaus.groovy.grails.web.sitemesh',       // layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping',        // URL mapping
-           'org.codehaus.groovy.grails.commons',            // core / classloading
-           'org.codehaus.groovy.grails.plugins',            // plugins
-           'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
+    error 'org.codehaus.groovy.grails.web.servlet',        // controllers
+            'org.codehaus.groovy.grails.web.pages',          // GSP
+            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
+            'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+            'org.codehaus.groovy.grails.web.mapping',        // URL mapping
+            'org.codehaus.groovy.grails.commons',            // core / classloading
+            'org.codehaus.groovy.grails.plugins',            // plugins
+            'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
+            'org.springframework',
+            'org.hibernate',
+            'net.sf.ehcache.hibernate'
+}
+
+grails.gorm.default.mapping = {
+    "user-type" type: org.joda.time.contrib.hibernate.PersistentDateTime, class: org.joda.time.DateTime
+    "user-type" type: org.joda.time.contrib.hibernate.PersistentDuration, class: org.joda.time.Duration
+    "user-type" type: org.joda.time.contrib.hibernate.PersistentInstant, class: org.joda.time.Instant
+    "user-type" type: org.joda.time.contrib.hibernate.PersistentInterval, class: org.joda.time.Interval
+    "user-type" type: org.joda.time.contrib.hibernate.PersistentLocalDate, class: org.joda.time.LocalDate
+    "user-type" type: org.joda.time.contrib.hibernate.PersistentLocalTimeAsString, class: org.joda.time.LocalTime
+    "user-type" type: org.joda.time.contrib.hibernate.PersistentLocalDateTime, class: org.joda.time.LocalDateTime
+    "user-type" type: org.joda.time.contrib.hibernate.PersistentPeriod, class: org.joda.time.Period
+}
+
+jodatime {
+    format.org.joda.time.DateTime = "dd MMM yyyy HH:mm:ss"
+    format.org.joda.time.LocalDate = "dd MMM yyyy"
+    format.org.joda.time.LocalTime = "HH:mm:ss"
+}
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'ru.seoTracker.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'ru.seoTracker.UserUserRole'
+grails.plugin.springsecurity.authority.className = 'ru.seoTracker.UserRole'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+        '/**/js/**'          : ['permitAll'],
+        '/**/css/**'         : ['permitAll'],
+        '/**/images/**'      : ['permitAll'],
+        '/**/fonts/**'       : ['permitAll'],
+        '/**/font-awesome/**': ['permitAll'],
+        '/**/sb-admin-v2/**' : ['permitAll'],
+        '/**/favicon.ico'    : ['permitAll'],
+        '/'                  : ['ROLE_ADMIN', 'IS_AUTHENTICATED_REMEMBERED'],
+        '/index'             : ['ROLE_ADMIN', 'IS_AUTHENTICATED_REMEMBERED'],
+        '/client/**'         : ['ROLE_ADMIN', 'IS_AUTHENTICATED_REMEMBERED'],
+        '/site/**'           : ['ROLE_ADMIN', 'IS_AUTHENTICATED_REMEMBERED'],
+        '/dbconsole/**'      : ['ROLE_ADMIN', 'IS_AUTHENTICATED_REMEMBERED'],
+        '/classDomainUML/**'      : ['ROLE_ADMIN', 'IS_AUTHENTICATED_REMEMBERED']
+]
+grails.plugin.springsecurity.logout.postOnly = false
+grails {
+    mail {
+        host = "smtp.gmail.com"
+        port = 465
+        username = "noreply.seotracker@gmail.com"
+        password = "seotracker93"
+        props = ["mail.smtp.auth":"true",
+                 "mail.smtp.socketFactory.port":"465",
+                 "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+                 "mail.smtp.socketFactory.fallback":"false"]
+    }
 }
